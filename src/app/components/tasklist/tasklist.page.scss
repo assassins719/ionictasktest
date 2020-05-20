@@ -1,0 +1,79 @@
+ion-content{
+    --padding-start:10px;
+    --padding-end:10px;
+    --padding-top:10px;
+    --padding-bottom:10px;
+}
+.tasklist{
+    border-radius: 7px;
+    border: 1px black solid;
+    padding: 0px;
+}
+.taskitem{
+    margin: 7px;
+    border-radius: 7px;
+    border: 1px var(--ion-color-secondary) solid;
+    border-left: 10px var(--ion-color-secondary) solid;
+}
+.tasktitle{
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}
+.taskbudget{
+    font-size: 20px;
+    font-weight: bold;
+    color: #23275d;
+    text-align: right;
+    float: right;
+}
+.dash_line {
+    border:none;
+    border-top:1px dotted black;
+    color:#fff;
+    background-color:#fff;
+    height:1px;
+    width:100%;
+}
+ion-col{
+    padding: 0px;
+}
+.taskheader{
+    margin-top: 7px;
+    font-size: 12px;
+}
+.taskvalue{
+    font-size: 14px;
+}
+.value_time{
+    color: darkslategrey;
+}
+.value_cost{
+    color: red;
+}
+.value_profit{
+    color: var(--ion-color-success);
+
+}
+.value_vat{
+    color: grey;
+}
+.total_div{
+    padding: 10px 10px 60px 10px;
+    font-size: 20px;
+    text-align: right;
+    ion-row{
+        padding: 5px;
+    }
+}
+.total_divider{
+    border:none;
+    border-top:1px solid black;
+    color:#fff;
+    background-color:#fff;
+    height:1px;
+    width:100%;
+}
+.total_price{
+    color:var(--ion-color-secondary)
+}

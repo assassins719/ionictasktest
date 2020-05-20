@@ -1,0 +1,8 @@
+{
+  "name": "TaskTest",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

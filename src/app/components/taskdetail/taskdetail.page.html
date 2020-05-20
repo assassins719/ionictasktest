@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add/Edit Task</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="root_div">
+  <ion-row>
+    <ion-col>
+      <ion-label>Task name:</ion-label>
+      <ion-input [(ngModel)]="curretntask.title"></ion-input>
+    </ion-col>
+  </ion-row>
+  <br />
+
+  <ion-row>
+    <ion-col>
+      <ion-label>Task cost(£):</ion-label>
+      <ion-label class="optionaltxt">(Optional)</ion-label>
+      <ion-input type="number" [(ngModel)]="curretntask.cost"></ion-input>
+    </ion-col>
+    <ion-col>
+      <ion-label>Task price(£):</ion-label>
+      <ion-label class="optionaltxt">(Optional)</ion-label>
+      <ion-input type="number" [(ngModel)]="curretntask.price"></ion-input>
+    </ion-col>
+  </ion-row>
+  <br />
+
+  <ion-row>
+    <ion-col>
+      <ion-label>VAT rate:</ion-label>
+      <ion-label class="optionaltxt">(Optional)</ion-label>
+      <ion-select placeholder="Select One" interface="popover" [(ngModel)]="curretntask.rate">
+        <ion-select-option value=20>20%</ion-select-option>
+        <ion-select-option value=5>5%</ion-select-option>
+        <ion-select-option value=0>0%</ion-select-option>
+      </ion-select>
+    </ion-col>
+  </ion-row>
+  <br />
+
+  <ion-row>
+    <ion-col size="12">
+      <ion-label>Estimated task duration:</ion-label>
+      <ion-label class="optionaltxt">(Optional)</ion-label>
+    </ion-col>
+    <ion-col>
+      <div class="div_numberstepper">
+        <ion-item lines="none">
+          <ion-icon (click)="onDecrease()" slot="start" color="danger" name="remove-circle"></ion-icon>
+          <ion-label style="text-align: center;">{{curretntask.duration}}</ion-label>
+          <ion-icon (click)="onIncrease()" slot="end" color="danger" name="add-circle"></ion-icon>
+        </ion-item>
+      </div>
+    </ion-col>
+    <ion-col>
+      <ion-select placeholder="Select One" interface="popover" [(ngModel)]="curretntask.durationtype">
+        <ion-select-option value="day">DAYS</ion-select-option>
+        <ion-select-option value="hour">HOURS</ion-select-option>
+      </ion-select>
+    </ion-col>
+  </ion-row>
+  <br />
+
+  <ion-row>
+    <ion-col>
+      <ion-label>Linked with Contact from Address Book:</ion-label>
+      <ion-input [(ngModel)]="curretntask.address"></ion-input>
+    </ion-col>
+  </ion-row>
+
+  <ion-button class="btn_save" expand="block" (click)="onSaveTask()">Save</ion-button>
+</ion-content>

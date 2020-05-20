@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Tasklist</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="tasklist" lines="none">
+    <ion-item *ngFor="let task of tasks;let i = index" class="taskitem" (click)="onEditTask(i)">
+      <ion-label class="tasktitle">
+        <div>
+          <span class="tasktitle">{{task.title}}</span> <span
+            class="taskbudget">{{task.total|currency:"GBP":true:"1.2"}}</span>
+        </div>
+        <div>
+          <ion-row class="taskheader">
+            <ion-col size="4">
+              Time
+            </ion-col>
+            <ion-col>
+              Cost
+            </ion-col>
+            <ion-col>
+              Profit
+            </ion-col>
+            <ion-col>
+              Vat
+            </ion-col>
+          </ion-row>
+          <div class="dash_line"></div>
+          <ion-row class="taskvalue">
+            <ion-col size="4" class="value_time">
+              {{task.duration}} {{DurationUnits[task.durationtype]}}
+            </ion-col>
+            <ion-col class="value_cost">
+              {{task.cost|currency:"GBP":true:"1.2"}}
+            </ion-col>
+            <ion-col class="value_profit">
+              {{task.price|currency:"GBP":true:"1.2"}}
+            </ion-col>
+            <ion-col class="value_vat">
+              {{(task.cost+task.price)*task.rate/100|currency:"GBP":true:"1.2"}}
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-label>
+      <ion-icon (click)="onRemoveTask($event,i)" slot="end" color="danger" name="trash"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+  <div class="total_div" [hidden]="tasks.length==0">
+    <ion-row>
+      <ion-col size="8">
+        Total labour cost:
+      </ion-col>
+      <ion-col class="value_cost">
+        {{result.totalCost|currency:"GBP":true:"1.2"}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8">
+        Total labour profit:
+      </ion-col>
+      <ion-col class="value_profit">
+        {{result.totalProfit|currency:"GBP":true:"1.2"}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8">
+        Subtotal:
+      </ion-col>
+      <ion-col>
+        {{result.subtotal|currency:"GBP":true:"1.2"}}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="8">
+        VAT:
+      </ion-col>
+      <ion-col class="value_vat">
+        {{result.vat|currency:"GBP":true:"1.2"}}
+      </ion-col>
+    </ion-row>
+    <div class="total_divider"></div>
+    <ion-row>
+      <ion-col size="8">
+        <b>Total labour price:</b>
+      </ion-col>
+      <ion-col class="total_price">
+        <b>{{result.total|currency:"GBP":true:"1.2"}}</b>
+      </ion-col>
+    </ion-row>
+  </div>
+  <h3 style="text-align: center;" [hidden]="tasks.length!=0">You dont have any available task for now. Add new task cliking + button.</h3>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="success" (click)="onNewTask()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
