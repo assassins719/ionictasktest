@@ -3,7 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { Task } from '../../statemanagement/models/Task';
 import { TaskAdd, TaskEdit } from '../../statemanagement/actions/task.action';
 import { ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 
 
 @Component({
@@ -15,7 +15,7 @@ export class TaskdetailPage implements OnInit {
   tasks: Task[]
   curretntask = new Task
   nIndex: -1
-  constructor(private store: Store<{ tasks: Task[] }>, private route: ActivatedRoute, public navCtrl: NavController) {
+  constructor(private store: Store<{ tasks: Task[] }>, private route: ActivatedRoute, public navCtrl: NavController, public alertCtrl: AlertController) {
     store.pipe(select("tasks")).subscribe(values => {
       this.tasks = values;
     });
@@ -32,6 +32,10 @@ export class TaskdetailPage implements OnInit {
   }
 
   onSaveTask() {
+    if (this.curretntask.title == "") {
+      this.showAlert("Please fill task title");
+      return;
+    }
     if (this.nIndex == -1) {
       this.store.dispatch(new TaskAdd(this.curretntask))
     } else {
@@ -47,5 +51,18 @@ export class TaskdetailPage implements OnInit {
     this.curretntask.duration -= 1
     if (this.curretntask.duration < 0)
       this.curretntask.duration = 0;
+  }
+
+  async showAlert(msg) {
+    const alert = await this.alertCtrl.create({
+      message: msg,
+      buttons: [
+        {
+          text: 'Ok',
+          role: 'cancel',
+        }
+      ]
+    });
+    await alert.present();
   }
 }
